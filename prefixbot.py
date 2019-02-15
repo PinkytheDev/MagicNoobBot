@@ -95,7 +95,7 @@ async def on_ready ( ) :
 
 
 @client.command()
-@commands.has_permissions(administrator=True)
+@command.has_permissions(administrator=True)
 async def kick(ctx, member:discord.Member = None):
     if not member:
         await ctx.send("Please specify a member")
