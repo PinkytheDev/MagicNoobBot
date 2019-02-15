@@ -90,15 +90,42 @@ async def square (number) :
 	
 @client.event	
 async def on_ready ( ) :
-	await client.change_presence (game=Game (name="MagicNoob Mr Noob Pink|m!help") )
+	await client.change_presence (game=Game (name="MagicNoob | M!help") )
 	print ("Logged in as " + client.user.name)
+
+
+@client.command()
+async def kick(ctx, member: discord.Member=None):
+	if not member:
+		await ctx.send("Please specify a member")
+		return
+        await member.kick()
+	await ctx.send(f"{member.mention} got kicked")
+
+@client.command()
+async def ban(ctx, member: discord.Member=None):
+	if not member:
+		await ctx.send("Please specify a member")
+		return
+        await member.ban()
+	await ctx.send(f"{member.mention} got banned")
 	
-	
-
-
-		    	
-
-
-
-
+@client.command()
+async def mute(ctx, member: discord.Member=None):
+	role = discord.utils.get{ctx.gluid.roles, name="Muted")
+	if not member:
+		await ctx.send("Please specify a member")
+		return
+	await member.add_roles(role)
+	await ctx.send("Added roles!")
+				  
+@client.command()
+async def unmute(ctx, member: discord.Member=None):
+	role = discord.utils.get{ctx.gluid.roles, name="Muted")
+	if not member:
+		await ctx.send("Please specify a member")
+		return
+	await member.remove_roles(role)
+	await ctx.send("Role removed!")
+				  
 client.run ("NDY0ODMxMzI4MjYxNjM2MDk2.DiE2YQ.j3jTWdwAJ8WVZPCSXVUKBG3-vu0")
