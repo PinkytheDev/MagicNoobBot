@@ -95,14 +95,6 @@ async def on_ready ( ) :
 
 
 @client.command()
-async def kick(ctx, member: discord.Member=None):
-	if not member:
-		await ctx.send("Please specify a member")
-		return
-        await member.kick()
-	await ctx.send(f"{member.mention} got kicked")
-
-@client.command()
 @commands.has_permissions(administrator=True)
 async def kick(ctx, member:discord.Member = None):
     if not member:
