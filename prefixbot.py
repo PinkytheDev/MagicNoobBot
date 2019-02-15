@@ -108,7 +108,7 @@ async def kick(ctx, member:discord.Member = None):
     if not member:
         await ctx.send("Please specify a member")
         return
-    await member.kick ()
+    await member.kick( )
     await ctx.send(f"{member.mention} got kicked")
 @kick.error
 async def kick_error(ctx, error):
@@ -121,7 +121,7 @@ async def ban(ctx, member:discord.Member = None):
     if not member:
         await ctx.send("Please specify a member")
         return
-    await member.ban ()
+    await member.ban( )
     await ctx.send(f"{member.mention} got ban")
 @ban.error
 async def kick_error(ctx, error):
