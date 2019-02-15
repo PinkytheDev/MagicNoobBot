@@ -103,29 +103,56 @@ async def kick(ctx, member: discord.Member=None):
 	await ctx.send(f"{member.mention} got kicked")
 
 @client.command()
-async def ban(ctx, member: discord.Member=None):
-	if not member:
-		await ctx.send("Please specify a member")
-		return
-        await member.ban()
-	await ctx.send(f"{member.mention} got banned")
-	
+@commands.has_permissions(administrator=True)
+async def kick(ctx, member:discord.Member = None):
+    if not member:
+        await ctx.send("Please specify a member")
+        return
+    await member.kick()
+    await ctx.send(f"{member.mention} got kicked")
+@kick.error
+async def kick_error(ctx, error):
+    if isinstance(error, commands.CheckFailure):
+        await ctx.send("You are not allowed to kick people")
+ 
 @client.command()
+@commands.has_permissions(administrator=True)
+async def ban(ctx, member:discord.Member = None):
+    if not member:
+        await ctx.send("Please specify a member")
+        return
+    await member.ban()
+    await ctx.send(f"{member.mention} got ban")
+@ban.error
+async def kick_error(ctx, error):
+    if isinstance(error, commands.CheckFailure):
+        await ctx.send("You are not allowed to ban people")
+ 
+@client.command()
+@commands.has_permissions(administrator=True)
 async def mute(ctx, member: discord.Member=None):
-	role = discord.utils.get{ctx.gluid.roles, name="Muted")
-	if not member:
-		await ctx.send("Please specify a member")
-		return
-	await member.add_roles(role)
-	await ctx.send("Added roles!")
-				  
+    if not member:
+        await ctx.send("Please specify a member")
+        return
+    role = discord.utils.get(ctx.guild.roles, name="muted")
+    await member.add_roles(role)
+@mute.error
+async def mute_error(ctx, error):
+    if isinstance(error, commands.CheckFailure):
+        await ctx.send("You are not allowed to mute people")
+ 
+ 
 @client.command()
+@commands.has_permissions(administrator=True)
 async def unmute(ctx, member: discord.Member=None):
-	role = discord.utils.get{ctx.gluid.roles, name="Muted")
-	if not member:
-		await ctx.send("Please specify a member")
-		return
-	await member.remove_roles(role)
-	await ctx.send("Role removed!")
+    if not member:
+        await ctx.send("Please specify a member")
+        return
+    role = discord.utils.get(ctx.guild.roles, name="muted")
+    await member.remove_roles(role)
+@mute.error
+async def unmute_error(ctx, error):
+    if isinstance(error, commands.CheckFailure):
+        await ctx.send("You are not allowed to unmute people")
 				  
 client.run ("NDY0ODMxMzI4MjYxNjM2MDk2.DiE2YQ.j3jTWdwAJ8WVZPCSXVUKBG3-vu0")
