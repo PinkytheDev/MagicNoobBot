@@ -108,7 +108,7 @@ async def kick_error(ctx, error):
         await ctx.send("You are not allowed to kick people")
  
 @client.command()
-@commands.has_permissions(administrator=True)
+@command.has_permissions(administrator=True)
 async def ban(ctx, member:discord.Member = None):
     if not member:
         await ctx.send("Please specify a member")
@@ -121,7 +121,7 @@ async def kick_error(ctx, error):
         await ctx.send("You are not allowed to ban people")
  
 @client.command()
-@commands.has_permissions(administrator=True)
+@command.has_permissions(administrator=True)
 async def mute(ctx, member: discord.Member=None):
     if not member:
         await ctx.send("Please specify a member")
@@ -135,7 +135,7 @@ async def mute_error(ctx, error):
  
  
 @client.command()
-@commands.has_permissions(administrator=True)
+@command.has_permissions(administrator=True)
 async def unmute(ctx, member: discord.Member=None):
     if not member:
         await ctx.send("Please specify a member")
