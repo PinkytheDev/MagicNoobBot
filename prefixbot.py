@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-client = commands.Bot(command_prefix="!", "M!", "m!help")
+client = commands.Bot(command_prefix=".")
 
 TOKEN = "NDY0ODMxMzI4MjYxNjM2MDk2.DiE2YQ.j3jTWdwAJ8WVZPCSXVUKBG3-vu0"
 
