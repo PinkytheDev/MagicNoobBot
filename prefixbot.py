@@ -49,6 +49,13 @@ async def echo(*args):
         output += ' '
     await client.say(output)
     await client.process_commands(message)
+    
+    
+@client.command()
+asyn def embed(ctx):
+	embed = discord.Embed(title="Title", description="Description", colour=discord.Color.green(), url="https://www.google.com")
+	
+	await ctx
 
 		
 client.run(TOKEN)
