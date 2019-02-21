@@ -49,9 +49,7 @@ async def echo(*args):
 
 
 @client.command()
-
-
-asyn
+asyns def embed(ctx):
 
 
 def embed(ctx):
