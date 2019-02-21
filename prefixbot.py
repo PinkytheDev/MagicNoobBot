@@ -56,7 +56,12 @@ asyn
 
 def embed(ctx):
     embed = discord.Embed(title="Title", description="Description", colour=discord.Color.green(), url="https://www.google.com")
-
+    
+    embed.set_author(name=client.user.name, icon_url=client.user.avatar_url) 
+    embed.set_footer(text=ctx.author.name, icon_url=ctx.author.icon_url)
+    embed.set_image(url="https://discordpy.readthedocs.io/en/rewrite/_images/snake.png")
+      
+                    
     await ctx.send(embed=embed)
 
 
