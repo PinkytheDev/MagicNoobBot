@@ -64,7 +64,7 @@ async def embed(ctx):
     embed.add_field(name="Field 3", value="value 3", inline=False)
     embed.add_field(name="Field 4", value="value 4")
 
-    await ctx.send(embed=embed)
+    await ctx.send(embed=embed)s
 
 
 client.run(TOKEN)
