@@ -46,6 +46,7 @@ async def echo(*args):
 @client.command(pass_context=True)
 async def clear(ctx, amount=10):
     chat = ctx.message.channel
+    limit = ctx.message.limit
     message = []
     async for message in client.logs_from(chat, limit-int(amount)):
         messages.append(message)
