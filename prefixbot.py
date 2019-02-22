@@ -44,7 +44,7 @@ async def echo(*args):
     await client.process_commands(message)
 
 @client.command(pass_context=True)
-async def clear(ctx, amount=10):
+async def clear(ctx, amount=100):
     chat = ctx.message.channel
     limit = (amount)
     message = []
