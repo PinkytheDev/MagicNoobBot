@@ -47,7 +47,7 @@ async def echo(*args):
 async def clear(ctx, amount=10):
     chat = ctx.message.channel
     message = []
-    async for message in client.logs_from(channel, limit-int(amount)):
+    async for message in client.logs_from(chat, limit-int(amount)):
         messages.append(message)
     await client.delete_messages(messages)
     await client.say('Messages deleted')
