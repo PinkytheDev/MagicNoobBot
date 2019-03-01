@@ -87,7 +87,7 @@ async def square (number) :
 	squared_value = int (number) * int (number)
 	await client.say (str (number) + " squared is " + str (squared_value) )
 	
-@client.command(pass_context=True, administrator=True)
+@client.command(pass_context=True)
 async def clear(ctx, amount=100):
     channel = ctx.message.channel
     messages = []
@@ -99,8 +99,8 @@ async def clear(ctx, amount=100):
 	
 	
 @client.event	
-async def on_ready ( ) :
-	await client.change_presence (game=Game (name="MagicNoob Mr Noob Pink|m!help") )
+async def on_ready():
+	await client.change_presence (game=Game (name="MagicNoob | m!help")
 	print ("Logged in as " + client.user.name)
 	
 	
@@ -111,4 +111,4 @@ async def on_ready ( ) :
 
 
 
-client.run (TOKEN)
+client.run(TOKEN)
