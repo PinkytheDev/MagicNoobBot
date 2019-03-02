@@ -29,15 +29,7 @@ async def on_message_delete(message):
     await client.process_commands(message)
 
 
-@client.command()@client.command(pass_context=True, adminstrator=True)
-async def clear(ctx, amount=100):
-    channel = ctx.message.channel
-    messages = []
-    async for message in client.logs_from(channel, limit=int(amount) + 1):
-        messages.append(message)
-    await client.delete_messages(messages)
-    await client.say("{} Messages Deleted.".format(int(amount))
-    await client.process_commands(message)
+@client.command()
 async def ping():
     await client.say("Pong!")
 
@@ -49,6 +41,18 @@ async def echo(*args):
         output += ' '
     await client.say(output)
     await client.process_commands(message)
+
+@client.command(pass_context=True, adminstrator=True)
+async def clear(ctx, amount=100):
+        channel = ctx.message.channel
+        messages = []
+        async for message in client.logs_from(channel, limit=int(amount) + 1):
+            messages.append(message)
+        await client.delete_messages(messages)
+        await client.say("{} Messages Deleted.".format(int(amount))
+    else:
+        client.say('Failed to clear messages')
+        await client.process_commands(message)
 
 
 
