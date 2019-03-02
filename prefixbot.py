@@ -87,16 +87,7 @@ async def square (number) :
 	squared_value = int (number) * int (number)
 	await client.say (str (number) + " squared is " + str (squared_value) )
 	
-@client.command(pass_context=True)
-async def clear(ctx, amount=100):
-    channel = ctx.message.channel
-    messages = []
-    async for message in client.logs_from(channel, limit=int(amount) + 1):
-        messages.append(message)
-    await client.delete_messages(messages)
-    await client.say("{} Messages Deleted.".format(int(amount))
-    await client.process_commands(message)
-	
+
 	
 @client.event	
 async def on_ready():
