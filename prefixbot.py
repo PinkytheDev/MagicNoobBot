@@ -2,8 +2,6 @@ import discord
 from discord import Game
 from discord.ext import commands
 
-TOKEN = 'NDY0ODMxMzI4MjYxNjM2MDk2.D12f6w.JqdtRBcotRl8axCIQnNrQyaO7Y8'
-
 client = commands.Bot(command_prefix = '.m')
 
 @client.event
@@ -52,4 +50,4 @@ async def clear(ctx, amount=100):
     await client.delete_messages(messages)
     await client.say("{} Messages Deleted".format(int(amount)) 
 
-client.run(TOKEN)
+client.run('NDY0ODMxMzI4MjYxNjM2MDk2.D12f6w.JqdtRBcotRl8axCIQnNrQyaO7Y8')
