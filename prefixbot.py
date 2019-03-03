@@ -16,6 +16,7 @@ async def on_message(message):
     author = message.author
     content = message.content
     print('{}: {}'.format(author, content))
+    await client.process_commands(message)
 
 @client.event
 async def on_message_delete(message):
