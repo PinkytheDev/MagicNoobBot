@@ -18,7 +18,7 @@ async def on_message(message):
     author = message.author
     content = message.content
     print('{}: {}'.format(author, content))
-    
+
 @client.event
 async def on_message_delete(message):
     author = message.author
@@ -26,5 +26,21 @@ async def on_message_delete(message):
     channel = message.channel
     await client.send_message(channel, '@{} has deleted a message'.format(author))
     print('Deleted message > {}: {}'.format(author, content))
+    await client.process_commands(message)
+
+@client.command()
+async def infobot():
+    await client.say('Name: MagicNoob')
+    await client.say('Role: Supreme')
+    await client.say('Owner: Join My Minecraft Server or Mr Noob Pink')
+    await client.say('Main Server: MagicNoob')
+
+@client.command()
+async def say(*args):
+    output = ''
+    for word in args:
+        output += word
+        output += ' '
+    await client.say(output)
 
 client.run(TOKEN)
