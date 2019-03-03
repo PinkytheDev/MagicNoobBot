@@ -1,6 +1,6 @@
 import discord
 from discord import Game
-from discord import commands
+from discord.ext import commands
 
 TOKEN = 'NDY0ODMxMzI4MjYxNjM2MDk2.D12f6w.JqdtRBcotRl8axCIQnNrQyaO7Y8'
 
