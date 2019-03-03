@@ -43,7 +43,7 @@ async def say(*args):
         output += ' '
     await client.say(output)
 
-@client.command(pass_context=True, adminstator=True)
+@client.command(pass_context=True)
 async def clear(ctx, amount=100):
     channel = ctx.message.channel
     messages = []
