@@ -52,9 +52,9 @@ async def clear(ctx, amount=100):
     await client.say('Deleted Message(s)')
 
 @client.command (name='8ball',
-                                     description="Answers a yes/no question.",
+                                    description="Answers a yes/no question.",
                                     brief="Answers from the beyond. Do m!help 8ball for more informations.",
-                                    aliases= ['eight_ball', 'eightball', '8_ball','8','Mr Noob Pink'] ,
+                                    aliases= ['eight_ball', 'eightball', '8_ball','8','Mr Noob Pink'],
                                     pass_context=True)
 async def eight_ball(context):
 	possible_responses = [
@@ -73,6 +73,6 @@ async def eight_ball(context):
 	'I dont know',
 	]
 	
-	await client.say(random.choice(possible_responses) + "," + context.message.author.mention)
+	await client.say(random.choice(possible_responses)+","+context.message.author.mention)
 
 client.run('NDY0ODMxMzI4MjYxNjM2MDk2.D12f6w.JqdtRBcotRl8axCIQnNrQyaO7Y8')
