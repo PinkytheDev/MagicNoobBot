@@ -35,6 +35,7 @@ async def infobot():
     await client.say('Main Server: MagicNoob')
 
 @client.command()
+@commands.has_permissions(administrator=True)
 async def say(*args):
     output = ''
     for word in args:
@@ -42,7 +43,8 @@ async def say(*args):
         output += ' '
     await client.say(output)
 
-@client.command(pass_context=True, adminstrator=True)
+@client.command(pass_context=True)
+@commands.has_permissions(administrator=True)
 async def clear(ctx, amount=100):
     channel = ctx.message.channel
     messages = []
