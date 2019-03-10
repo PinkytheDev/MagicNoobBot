@@ -17,14 +17,20 @@ async def on_message(message):
     content = message.content
     print('{}: {}'.format(author, content))
     await client.process_commands(message)
+    
+@client.event
+async def on_member_join(member):
+	roles = discord.utils.get(member.server.roles, name='Members')
+	await client.add_roles(member, role)
+	await client.say("Hey! Server Owner. But if you don't have **Members** role. Then, I prefer you to add it to make this function work.")
+    await client.process_commands(message)
 
 @client.event
 async def on_message_delete(message):
     author = message.author
     content = message.content
     channel = message.channel
-    await client.send_message(channel, '@{} has deleted a message'.format(author))
-    print('Deleted message > {}: {}'.format(author, content))
+    print('Deleted Message > {}: {}'.format(author, content))
     await client.process_commands(message)
 
 @client.command()
