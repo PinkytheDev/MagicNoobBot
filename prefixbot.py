@@ -22,8 +22,8 @@ async def on_message(message):
 async def on_member_join(member):
 	roles = discord.utils.get(member.server.roles, name='Members')
 	await client.add_roles(member, role)
-	await client.say("Hey! Server Owner. But if you don't have **Members** role. Then, I prefer you to add it to make this function work.)
-			 await client.process_commands(message)
+	await client.say("Hey! Server Owner. But if you don't have **Members** role. Then, I prefer you to add it to make this function work.")
+	await client.process_commands(message)
 
 @client.event
 async def on_message_delete(message):
