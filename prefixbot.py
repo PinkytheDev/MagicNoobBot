@@ -2,6 +2,10 @@ import discord
 import requests
 import random
 import asyncio
+import time
+import aiohttp
+import json
+import os
 from discord import Game
 from discord.ext import commands
 
