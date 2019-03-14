@@ -93,12 +93,7 @@ async def eight_ball(context):
     ]
     await client.say(random.choice(possible_responses) + ", " + context.message.author.mention)
 
-# Math  add #
 
-@client.command()
-async def add(left : int, right : int):
-    """Adds Two Numbers."""
-    await client.say(left + right)
 
 # Math Subtraction #
 
