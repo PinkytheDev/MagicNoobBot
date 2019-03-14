@@ -93,4 +93,30 @@ async def eight_ball(context):
     ]
     await client.say(random.choice(possible_responses) + ", " + context.message.author.mention)
 
+#math
+
+@client.command()
+async def add(left : int, right : int):
+    """Numbers + Numbers"""
+await client.say(left + right)
+
+@client.command()
+async def subtract(left : int, right : int):
+    """Numbers - Numbers"""
+await client.say(left - right)
+
+@client.command()
+async def multiply(left : int, right : int):
+    """Numbers x Numbers"""
+await client.say(left * right)
+
+@client.command()
+async def divide(left : int, right : int)
+    """Numbers // Numbers. Except Numbers // 0"""
+    try:
+        await client.say(left // right)
+    except ZeroDivisionError:
+        await client.say("The number can't be divided by ZERO")
+    
+
 client.run('NDY0ODMxMzI4MjYxNjM2MDk2.D12f6w.JqdtRBcotRl8axCIQnNrQyaO7Y8')
