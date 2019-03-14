@@ -132,7 +132,7 @@ async def divide(left: int, right: int):
         await client.say(left // right)
     except ZeroDivisionError:
         await client.say("Numbers can't be divided by ZERO")
-        
+
 @client.command(pass_context=True)
 async def help(ctx):
     author = ctx.message.author
@@ -152,6 +152,7 @@ async def help(ctx):
     embed.add_field(name='Prefix', value='= .m', inline=False)
 
     await client.send_message(author, embed=embed)
+    await client.say('Check your DM. Please!' + ', ' + context.message.author.mention)
 
 
 client.run('NDY0ODMxMzI4MjYxNjM2MDk2.D12f6w.JqdtRBcotRl8axCIQnNrQyaO7Y8')
