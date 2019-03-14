@@ -45,6 +45,17 @@ async def on_message_delete(message):
     print('Deleted Message > {}: {}'.format(author, content))
     await client.process_commands(message)
 
+@client.event
+async def on_reaction_add(reaction, user):
+    channel = reaction.message.channel
+    await client.send_message(channel, '{} has added {} to the message: {}'.format(user.name, reaction.emoji, reaction.message.content))
+    await client.process_commands(message)
+    
+@client.event
+async def on_reaction_remove(reaction, user):
+    channel = reaction.message.channel
+    await client.send_message(channel, '{} has removed {} from the message: {}'.format(user.name, reaction.emoji, reaction.message.content))
+    await client.process_commands(message)
 
 @client.command()
 async def infobot():
@@ -142,7 +153,6 @@ async def help(ctx):
         colour = discord.Colour.green()
     )
     embed.set_author(name='Help')
-    embed.add_field(name='ping', value='Returns Pong!', inline=False)
     embed.add_field(name='infobot', value='Gives bot information', inline=False)
     embed.add_field(name='8ball', value='Gives 8ball Messages', inline=False)
     embed.add_field(name='add', value='Adds 2 numbers', inline=False)
