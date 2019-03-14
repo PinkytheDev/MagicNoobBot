@@ -111,7 +111,7 @@ async def multiply(left : int, right : int):
 await client.say(left * right)
 
 @client.command()
-async def divide(left : int, right : int)
+async def divide(left : int, right : int):
     """Numbers // Numbers. Except Numbers // 0"""
     try:
         await client.say(left // right)
