@@ -152,7 +152,10 @@ async def help(ctx):
     embed.add_field(name='Prefix', value='= .m', inline=False)
 
     await client.send_message(author, embed=embed)
-    await client.say('Check your DM. Please!' + ', ' + context.message.author.mention)
+    
+@client.command(pass_context=True)
+async def help(contxt):
+    await client.say("Please check your DMs" + ", " + context.message.author.mention)
 
 
 client.run('NDY0ODMxMzI4MjYxNjM2MDk2.D12f6w.JqdtRBcotRl8axCIQnNrQyaO7Y8')
