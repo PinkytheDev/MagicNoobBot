@@ -73,7 +73,7 @@ async def clear(ctx, amount=100):
 @client.command(name='8ball',
                                     description="Answers a yes/no question.",
                                     brief="Answers from the beyond. Do .mhelp 8ball for more informations.",
-                                    aliases= ['eight_ball', 'eightball', '8_ball','8','Mr Noob Pink'],
+                                    aliases= ['eight_ball', 'eightball', '8_ball', '8', 'Mr Noob Pink'],
                                     pass_context=True)
 async def eight_ball(context):
     possible_responses = [
