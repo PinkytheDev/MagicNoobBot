@@ -10,7 +10,7 @@ from discord import Game
 from discord.ext import commands
 
 client = commands.Bot(command_prefix='.m')
-
+client.remove_command('help')
 
 @client.event
 async def on_ready():
@@ -74,6 +74,7 @@ async def clear(ctx, amount=100):
     await client.delete_messages(messages)
     await client.say('Deleted Message(s)')
 
+
 @client.command(name='8ball',
                 description="Answers yes/no",
                 brief="Answers from the beyond. Do .m8ball for more info",
@@ -81,54 +82,76 @@ async def clear(ctx, amount=100):
                 pass_context=True)
 async def eight_ball(context):
     possible_responses = [
-    'That is a resounding no',
-    'It is not looking likely',
-    'Too hard to tell',
-    'It is quite possible',
-    'Definitely',
-    'No',
-    'This question is shit',
-    'Fuck U',
-    'Yes',
-    'Hmmm???',
-    'I dont think so!',
-    'You Know What BYE!',
-    'I dont know',
+        'That is a resounding no',
+        'It is not looking likely',
+        'Too hard to tell',
+        'It is quite possible',
+        'Definitely',
+        'No',
+        'This question is shit',
+        'Fuck U',
+        'Yes',
+        'Hmmm???',
+        'I dont think so!',
+        'You Know What BYE!',
+        'I dont know',
     ]
     await client.say(random.choice(possible_responses) + ", " + context.message.author.mention)
-	
+
+
 # Math Addition #
 
 @client.command()
-async def add(left : int, right : int):
-	"""Adds Two Numbers"""
-	await client.say(left + right)
-
+async def add(left: int, right: int):
+    """Adds Two Numbers"""
+    await client.say(left + right)
 
 
 # Math Subtraction #
 
 @client.command()
-async def subtract(left : int, right : int):
-	"""Subtracts Two Numbers."""
-	await client.say(left - right)
+async def subtract(left: int, right: int):
+    """Subtracts Two Numbers."""
+    await client.say(left - right)
+
 
 # Math Multiplication #
 
 @client.command()
-async def multiply(left : int, right : int):
-	"""Multiplies Numbers."""
-	await client.say(left * right)
-	
+async def multiply(left: int, right: int):
+    """Multiplies Numbers."""
+    await client.say(left * right)
+
+
 # Math Division #
 
 @client.command()
-async def divide(left : int, right : int):
-	"""Divides Numbers!"""
-	try:
-	        await client.say(left // right)
-	except ZeroDivisionError:
-		await client.say("Numbers can't be divided by ZERO")
-    
+async def divide(left: int, right: int):
+    """Divides Numbers!"""
+    try:
+        await client.say(left // right)
+    except ZeroDivisionError:
+        await client.say("Numbers can't be divided by ZERO")
+        
+@client.command(pass_context=True)
+async def help(ctx):
+    author = ctx.message.author
+
+
+    embed = discord.Embed(
+        colour = discord.Colour.green()
+    )
+    embed.set_author(name='Help')
+    embed.add_field(name='ping', value='Returns Pong!', inline=False)
+    embed.add_field(name='infobot', value='Gives bot information', inline=False)
+    embed.add_field(name='8ball', value='Gives 8ball Messages', inline=False)
+    embed.add_field(name='add', value='Adds 2 numbers', inline=False)
+    embed.add_field(name='subtract', value='Subtracts 2 numbers', inline=False)
+    embed.add_field(name='multiply', value='Multiplies 2 numbers', inline=False)
+    embed.add_field(name='divide', value='Divides 2 numbers', inline=False)
+    embed.add_field(name='Prefix', value='= .m', inline=False)
+
+    await client.send_message(author, embed=embed)
+
 
 client.run('NDY0ODMxMzI4MjYxNjM2MDk2.D12f6w.JqdtRBcotRl8axCIQnNrQyaO7Y8')
