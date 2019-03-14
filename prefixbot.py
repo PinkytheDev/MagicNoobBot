@@ -114,7 +114,36 @@ async def divide(left : int, right : int):
     try:
         await client.say(left // right)
     except ZeroDivisionError:
-        await client.say("The number can't be divided by ZERO")
+        await client.say("The number can't be divided by ZERO")# Math  add #
+
+@client.command()
+async def add(left : int, right : int):
+    """Adds Two Numbers."""
+    await client.say(left + right)
+
+# Math Subtraction #
+
+@client.command()
+async def subtract(left : int, right : int):
+	"""Subtracts Two Numbers."""
+	await client.say(left - right)
+
+# Math Multiplication #
+
+@client.command()
+async def multiply(left : int, right : int):
+	"""Multiplies Numbers."""
+	await client.say(left * right)
+	
+# Math Division #
+
+@client.command()
+async def divide(left : int, right : int):
+	"""Divides Numbers!"""
+	try:
+	        await client.say(left // right)
+	except ZeroDivisionError:
+		await client.say("Numbers can't be divided by ZERO")
     
 
 client.run('NDY0ODMxMzI4MjYxNjM2MDk2.D12f6w.JqdtRBcotRl8axCIQnNrQyaO7Y8')
