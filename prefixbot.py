@@ -223,7 +223,7 @@ async def help(ctx):
     embed.add_field(name='subtract', value='Subtracts 2 numbers', inline=False)
     embed.add_field(name='multiply', value='Multiplies 2 numbers', inline=False)
     embed.add_field(name='divide', value='Divides 2 numbers', inline=False)
-    embed.add_field(name='echo', value='Repeats what you have said after .mecho', inline=False)
+    embed.add_field(name='say', value='Repeats what you have said after .msay', inline=False)
     embed.add_field(name='clear', value='Clears Messages', inline=False)
     embed.add_field(name='Prefix', value='= .m', inline=False)
 
