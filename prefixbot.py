@@ -12,6 +12,7 @@ from discord.ext import commands
 client = commands.Bot(command_prefix='.m')
 client.remove_command('help')
 
+
 @client.event
 async def on_ready():
     await client.change_presence(game=Game(name='MagicNoob | .m'))
@@ -45,17 +46,30 @@ async def on_message_delete(message):
     print('Deleted Message > {}: {}'.format(author, content))
     await client.process_commands(message)
 
+
 @client.event
 async def on_reaction_add(reaction, user):
     channel = reaction.message.channel
     await client.send_message(channel, '{} has added {} to the message: {}'.format(user.name, reaction.emoji, reaction.message.content))
     await client.process_commands(message)
-    
+
+
 @client.event
 async def on_reaction_remove(reaction, user):
     channel = reaction.message.channel
     await client.send_message(channel, '{} has removed {} from the message: {}'.format(user.name, reaction.emoji, reaction.message.content))
     await client.process_commands(message)
+
+@client.command(pass_context=True)
+async def join(ctx):
+    channel = ctx.message.author.voice.voice_channel
+    await client.join_voice_channel(channel)
+
+@client.command(pass_context=True)
+async def leave(ctx):
+    server = ctx.message.server
+    voice_client = client.voice_client_in(server)
+    await voice_client.disconnect()
 
 @client.command()
 async def infobot():
@@ -144,17 +158,19 @@ async def divide(left: int, right: int):
     except ZeroDivisionError:
         await client.say("Numbers can't be divided by ZERO")
 
+
 @client.command(pass_context=True)
 async def help(ctx):
     author = ctx.message.author
 
-
     embed = discord.Embed(
-        colour = discord.Colour.green()
+        colour=discord.Colour.green()
     )
     embed.set_author(name='Help')
     embed.add_field(name='infobot', value='Gives bot information', inline=False)
     embed.add_field(name='8ball', value='Gives 8ball Messages', inline=False)
+    embed.add_field(name='join', value='Makes the bot join the voice channel where you are in', inline=False)
+    embed.add_field(name='leave', value='Makes the bot leave the voice channel', inline=False)
     embed.add_field(name='add', value='Adds 2 numbers', inline=False)
     embed.add_field(name='subtract', value='Subtracts 2 numbers', inline=False)
     embed.add_field(name='multiply', value='Multiplies 2 numbers', inline=False)
@@ -163,5 +179,6 @@ async def help(ctx):
     embed.add_field(name='Prefix', value='= .m', inline=False)
 
     await client.send_message(author, embed=embed)
+
 
 client.run('NDY0ODMxMzI4MjYxNjM2MDk2.D12f6w.JqdtRBcotRl8axCIQnNrQyaO7Y8')
