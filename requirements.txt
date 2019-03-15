@@ -1,4 +1,3 @@
 discord.py
 discord.py[voice]
-asyncio --upgrade
 requests
