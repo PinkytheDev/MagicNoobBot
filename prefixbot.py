@@ -181,4 +181,4 @@ async def help(ctx):
     await client.send_message(author, embed=embed)
 
 
-client.run('TOKEN')
+client.run('NDY0ODMxMzI4MjYxNjM2MDk2.D20CKw.DT0A4hgLcAbQF7d-w8u2jsoyjig')
