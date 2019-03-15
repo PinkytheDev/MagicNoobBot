@@ -81,6 +81,21 @@ async def play(ctx, url):
     players[server.id] = player
     player.start()
 
+@client.command(pass_context=True)
+async def pause(ctx):
+    id = ctx.message.server.id
+    players[id].pause()
+
+@client.command(pass_context=True)
+async def stop(ctx):
+    id = ctx.message.server.id
+    players[id].stop()
+
+@client.command(pass_context=True)
+async def resume(ctx):
+    id = ctx.message.server.id
+    players[id].resume()
+
 @client.command()
 async def infobot():
     await client.say('Name: MagicNoob')
@@ -181,12 +196,16 @@ async def help(ctx):
     embed.add_field(name='8ball', value='Gives 8ball Messages', inline=False)
     embed.add_field(name='join', value='Makes the bot join the voice channel where you are in', inline=False)
     embed.add_field(name='leave', value='Makes the bot leave the voice channel', inline=False)
-    embed.add_field(name='play', value='Plays an Audio')
+    embed.add_field(name='play', value='Plays an Audio. Usage .mplay (Youtube Video Url)', inline=False)
+    embed.add_field(name='pause', value='Pauses the Audio', inline=False)
+    embed.add_field(name='stop', value='Stops the Audio', inline=False)
+    embed.add_field(name='resume', value='Resumes the Audio', inline=False)
     embed.add_field(name='add', value='Adds 2 numbers', inline=False)
     embed.add_field(name='subtract', value='Subtracts 2 numbers', inline=False)
     embed.add_field(name='multiply', value='Multiplies 2 numbers', inline=False)
     embed.add_field(name='divide', value='Divides 2 numbers', inline=False)
-    embed.add_field(name='Clear', value='Clears Messages', inline=False)
+    embed.add_field(name='echo', value='Repeats what you have said after .mecho', inline=False)
+    embed.add_field(name='clear', value='Clears Messages', inline=False)
     embed.add_field(name='Prefix', value='= .m', inline=False)
 
     await client.send_message(author, embed=embed)
