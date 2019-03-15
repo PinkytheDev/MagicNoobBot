@@ -1,4 +1,5 @@
 import discord
+import youtube_dl
 import requests
 import random
 import asyncio
@@ -12,6 +13,7 @@ from discord.ext import commands
 client = commands.Bot(command_prefix='.m')
 client.remove_command('help')
 
+players = {}
 
 @client.event
 async def on_ready():
@@ -70,6 +72,14 @@ async def leave(ctx):
     server = ctx.message.server
     voice_client = client.voice_client_in(server)
     await voice_client.disconnect()
+
+@client.command(pass_context=True)
+async def play(ctx, url):
+    server = ctx.message.server
+    voice_client = client.voice_client_in(server)
+    player = await voice_client.create_ytdl_player(url)
+    players[server.id] = player
+    player.start()
 
 @client.command()
 async def infobot():
@@ -171,6 +181,7 @@ async def help(ctx):
     embed.add_field(name='8ball', value='Gives 8ball Messages', inline=False)
     embed.add_field(name='join', value='Makes the bot join the voice channel where you are in', inline=False)
     embed.add_field(name='leave', value='Makes the bot leave the voice channel', inline=False)
+    embed.add_field(name='play', value='Plays an Audio')
     embed.add_field(name='add', value='Adds 2 numbers', inline=False)
     embed.add_field(name='subtract', value='Subtracts 2 numbers', inline=False)
     embed.add_field(name='multiply', value='Multiplies 2 numbers', inline=False)
