@@ -230,4 +230,4 @@ async def help(ctx):
     await client.send_message(author, embed=embed)
 
 
-client.run(TOKEN)
+client.run(str(os.environ.get('BOT_TOKEN')))
