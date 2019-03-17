@@ -12,7 +12,7 @@ from discord.ext import commands
 
 client = commands.Bot(command_prefix='.m')
 client.remove_command('help')
-os.chdir(r'https://github.com/PinkytheDev/MagicNoobBot')
+
 
 players = {}
 queues = {}
