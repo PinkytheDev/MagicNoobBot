@@ -133,7 +133,7 @@ async def say(*args):
 
 
 @client.command(pass_context=True)
-@commands.has_permissions(administrator=True)
+@commands.has_permissions(manage_messages=True)
 async def clear(ctx, amount=100):
     channel = ctx.message.channel
     messages = []
