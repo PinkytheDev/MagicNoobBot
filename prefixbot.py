@@ -41,7 +41,7 @@ async def on_message(message):
 @client.event
 async def on_member_join(member):
     roles = discord.utils.get(member.server.roles, name='Members')
-    await client.add_roles(member, role)
+    await client.add_roles(member, roles)
     await client.say(
         "Hey! Server Owner. But if you don't have **Members** role. Then, I prefer you to add it to make this function work.")
     await client.process_commands(message)
@@ -86,7 +86,11 @@ async def play(ctx, url):
     voice_client = client.voice_client_in(server)
     player = await voice_client.create_ytdl_player(url, after=lambda: check_queue(server.id))
     players[server.id] = player
-    player.start()
+    try:
+        player.start()
+    except ValueError:
+        await client.say("Please enter a URL.")
+
 
 @client.command(pass_context=True)
 async def pause(ctx):
@@ -129,7 +133,10 @@ async def say(*args):
     for word in args:
         output += word
         output += ' '
-    await client.say(output)
+    try:
+        await client.say(output)
+    except PermissionError:
+        await client.say("You don't have permission.")
 
 
 @client.command(pass_context=True)
@@ -137,10 +144,13 @@ async def say(*args):
 async def clear(ctx, amount=100):
     channel = ctx.message.channel
     messages = []
-    async for message in client.logs_from(channel, limit=int(amount) + 1):
+    try:
+        async for message in client.logs_from(channel, limit=int(amount) + 1):
         messages.append(message)
-    await client.delete_messages(messages)
-    await client.say('Deleted Message(s)')
+        await client.delete_messages(messages)
+        await client.say('Deleted Message(s)')
+    except PermissionError:
+        await client.say("You don't have permission.")
 
 
 @client.command(name='8ball',
@@ -214,7 +224,7 @@ async def help(ctx):
     embed.add_field(name='infobot', value='Gives bot information', inline=False)
     embed.add_field(name='8ball', value='Gives 8ball Messages', inline=False)
     embed.add_field(name='join', value='Makes the bot join the voice channel where you are in', inline=False)
-    embed.add_field(name='leave', value='Makes the bot leave the voice channel', inline=False)
+    embed.add_field(name='leave',value='Makes the bot leaves the voice channel.', inline=False)
     embed.add_field(name='play', value='Plays an Audio. Usage: .mplay (Youtube Video Url)', inline=False)
     embed.add_field(name='pause', value='Pauses the Audio', inline=False)
     embed.add_field(name='stop', value='Stops the Audio', inline=False)
