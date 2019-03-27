@@ -13,7 +13,6 @@ from discord.ext import commands
 client = commands.Bot(command_prefix='.m')
 client.remove_command('help')
 
-
 players = {}
 queues = {}
 
@@ -47,8 +46,6 @@ async def on_member_join(member):
         "Hey! Server Owner. But if you don't have **Members** role. Then, I prefer you to add it to make this function work.")
     await client.process_commands(message)
     
-
-	
 		
 @client.event
 async def on_message_delete(message):
@@ -136,7 +133,7 @@ async def say(*args):
 
 
 @client.command(pass_context=True)
-@commands.has_permissions(administrator=True)
+@commands.has_permissions(manage_messages=True)
 async def clear(ctx, amount=100):
     channel = ctx.message.channel
     messages = []
@@ -208,6 +205,7 @@ async def divide(left: int, right: int):
 @client.command(pass_context=True)
 async def help(ctx):
     author = ctx.message.author
+    channel = ctx.message.channel
 
     embed = discord.Embed(
         colour=discord.Colour.green()
@@ -231,6 +229,7 @@ async def help(ctx):
     embed.add_field(name='Prefix', value='= .m', inline=False)
 
     await client.send_message(author, embed=embed)
+    await client.send_message(channel, embed=embed)
 
 
 client.run(str(os.environ.get('BOT_TOKEN')))
