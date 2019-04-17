@@ -141,6 +141,33 @@ async def clear(ctx, amount=100):
         messages.append(message)
     await client.delete_messages(messages)
     await client.say('Deleted Message(s)')
+    
+@client.command(pass_context=True)
+@commands.has_permissions(ban_members=True)
+async def ban(ctx, userName: discord.User):
+	try:
+		await client.ban(userName)
+		await client.say("Successfully, Banned user!")
+	except:
+		await client.say("Failed to ban user!")
+		
+@client.command(pass_context=True)
+@commands.has_permissions(ban_members=True)
+async def unban(ctx, userName: discord.User):
+	try:
+		await client.unban(userName)
+		await client.say("Successfully, Unbanned user!")
+	except:
+		await client.say("Failed to unban user!")
+
+@client.command(pass_context=True)
+@commands.has_permissions(kick_members=True)
+async def kick(ctx, userName: discord.User):
+	try:
+		await client.kick(userName)
+		await client.say("Successfully, Kicked user!")
+	except:
+		await client.say("Failed to kick user!")
 
 
 @client.command(name='8ball',
@@ -226,6 +253,9 @@ async def help(ctx):
     embed.add_field(name='divide', value='Divides 2 numbers', inline=False)
     embed.add_field(name='say', value='Repeats what you have said after .msay', inline=False)
     embed.add_field(name='clear', value='Clears Messages', inline=False)
+    embed.add_field(name='ban', value='Bans a user', inline=False)
+    embed.add_field(name='unban', value='Unbans a user', inline=False)
+    embed.add_field(name='kick', value='Kicks a user', inline=False)
     embed.add_field(name='Prefix', value='= .m', inline=False)
 
     await client.send_message(author, embed=embed)
