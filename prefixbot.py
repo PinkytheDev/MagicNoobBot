@@ -71,7 +71,7 @@ async def on_reaction_remove(reaction, user):
 
 @client.command()
 async def ping(ctx):
-    await ctx.send(f"Pong, {round(client.latency * 1000)}ms)
+    await ctx.send(f"Pong, {round(client.latency * 1000)}ms")
 
 @client.command(pass_context=True)
 async def join(ctx):
@@ -255,6 +255,7 @@ async def help(ctx):
     embed.add_field(name='subtract', value='Subtracts 2 numbers', inline=False)
     embed.add_field(name='multiply', value='Multiplies 2 numbers', inline=False)
     embed.add_field(name='divide', value='Divides 2 numbers', inline=False)
+    embed.add_field(name='ping', value='Gives you latency in milliseconds', inline=False)
     embed.add_field(name='say', value='Repeats what you have said after .msay', inline=False)
     embed.add_field(name='clear', value='Clears Messages', inline=False)
     embed.add_field(name='ban', value='Bans a user', inline=False)
