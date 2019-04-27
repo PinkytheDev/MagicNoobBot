@@ -69,9 +69,9 @@ async def on_reaction_remove(reaction, user):
     await client.send_message(channel, '{} has removed {} from the message: {}'.format(user.name, reaction.emoji, reaction.message.content))
     await client.process_commands(message)
 
-@client.command()
-async def ping(ctx):
-    await ctx.send(f"Pong, {round(client.latency * 1000)}ms")
+@client.command(pass_context=True)
+async def ping():
+    await cient.say(f"Pong, {round(client.latency * 1000)}ms")
 
 @client.command(pass_context=True)
 async def join(ctx):
