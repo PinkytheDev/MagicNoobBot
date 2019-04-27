@@ -71,7 +71,7 @@ async def on_reaction_remove(reaction, user):
 
 @client.command(pass_context=True)
 async def ping():
-    await cient.say(f"Pong, {round(client.latency * 1000)}ms")
+    await client.say(f"Pong, {round(client.latency * 1000)}ms")
 
 @client.command(pass_context=True)
 async def join(ctx):
