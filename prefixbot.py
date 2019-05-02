@@ -69,6 +69,9 @@ async def on_reaction_remove(reaction, user):
     await client.send_message(channel, '{} has removed {} from the message: {}'.format(user.name, reaction.emoji, reaction.message.content))
     await client.process_commands(message)
 
+@client.command()
+async def ping():
+    await client.say('Coming Soon!')
 
 @client.command(pass_context=True)
 async def join(ctx):
