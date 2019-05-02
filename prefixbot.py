@@ -41,12 +41,12 @@ async def on_message(message):
 @client.event
 async def on_member_join(member):
     roles = discord.utils.get(member.server.roles, name='Members')
-    await client.add_roles(member, role)
+    await client.add_roles(member, roles)
     await client.say(
         "Hey! Server Owner. But if you don't have **Members** role. Then, I prefer you to add it to make this function work.")
     await client.process_commands(message)
-    
-		
+
+
 @client.event
 async def on_message_delete(message):
     author = message.author
@@ -59,7 +59,7 @@ async def on_message_delete(message):
 @client.event
 async def on_reaction_add(reaction, user):
     channel = reaction.message.channel
-    await client.send_message(channel, '{} has added {} to the message: {}'.format(user.name, reaction.emoji ,reaction.message.content))
+    await client.send_message(channel, '{} has added {} to the message: {}'.format(user.name, reaction.emoji, reaction.message.content))
     await client.process_commands(message)
 
 
@@ -68,10 +68,6 @@ async def on_reaction_remove(reaction, user):
     channel = reaction.message.channel
     await client.send_message(channel, '{} has removed {} from the message: {}'.format(user.name, reaction.emoji, reaction.message.content))
     await client.process_commands(message)
-
-@client.command()
-async def ping():
-    await client.say('Coming Soon!')
 
 @client.command(pass_context=True)
 async def join(ctx):
@@ -91,6 +87,7 @@ async def play(ctx, url):
     player = await voice_client.create_ytdl_player(url, after=lambda: check_queue(server.id))
     players[server.id] = player
     player.start()
+
 
 @client.command(pass_context=True)
 async def pause(ctx):
@@ -134,7 +131,7 @@ async def say(*args):
         output += word
         output += ' '
     await client.say(output)
-
+        
 
 @client.command(pass_context=True)
 @commands.has_permissions(manage_messages=True)
@@ -142,10 +139,10 @@ async def clear(ctx, amount=100):
     channel = ctx.message.channel
     messages = []
     async for message in client.logs_from(channel, limit=int(amount) + 1):
-        messages.append(message)
+    messages.append(message)
     await client.delete_messages(messages)
     await client.say('Deleted Message(s)')
-    
+
 @client.command(pass_context=True)
 @commands.has_permissions(ban_members=True)
 async def ban(ctx, userName: discord.User):
@@ -172,6 +169,7 @@ async def kick(ctx, userName: discord.User):
 		await client.say("Successfully, Kicked user!")
 	except:
 		await client.say("Failed to kick user!")
+
 
 
 @client.command(name='8ball',
@@ -245,7 +243,7 @@ async def help(ctx):
     embed.add_field(name='infobot', value='Gives bot information', inline=False)
     embed.add_field(name='8ball', value='Gives 8ball Messages', inline=False)
     embed.add_field(name='join', value='Makes the bot join the voice channel where you are in', inline=False)
-    embed.add_field(name='leave', value='Makes the bot leave the voice channel', inline=False)
+    embed.add_field(name='leave',value='Makes the bot leaves the voice channel.', inline=False)
     embed.add_field(name='play', value='Plays an Audio. Usage: .mplay (Youtube Video Url)', inline=False)
     embed.add_field(name='pause', value='Pauses the Audio', inline=False)
     embed.add_field(name='stop', value='Stops the Audio', inline=False)
@@ -255,12 +253,11 @@ async def help(ctx):
     embed.add_field(name='subtract', value='Subtracts 2 numbers', inline=False)
     embed.add_field(name='multiply', value='Multiplies 2 numbers', inline=False)
     embed.add_field(name='divide', value='Divides 2 numbers', inline=False)
-    embed.add_field(name='ping', value='Gives you latency in milliseconds', inline=False)
     embed.add_field(name='say', value='Repeats what you have said after .msay', inline=False)
     embed.add_field(name='clear', value='Clears Messages', inline=False)
-    embed.add_field(name='ban', value='Bans a user', inline=False)
-    embed.add_field(name='unban', value='Unbans a user', inline=False)
-    embed.add_field(name='kick', value='Kicks a user', inline=False)
+    embed.add_field(name='ban', value='Bans a member', inline=False)
+    embed.add_field(name='unban', value='Unbans a member', inline=False)
+    embed.add_field(name='kick', value='Kicks a member', inline=False)
     embed.add_field(name='Prefix', value='= .m', inline=False)
 
     await client.send_message(author, embed=embed)
