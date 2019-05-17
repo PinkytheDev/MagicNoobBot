@@ -24,10 +24,8 @@ def check_queue(id):
 
 @client.event
 async def on_ready():
-    await client.change_presence(client.user_activity="MagicNoob | .m")
-    print('The bot is connected')
-    print('Discord Application is being online')
-    print('Connected on Application ' + client.user.name)
+    await client.change_presence(game=Game(name='Calculating by + | - | x | ÷ || c'))
+    print('Connected on ' + client.user.name)
 
 
 @client.event
