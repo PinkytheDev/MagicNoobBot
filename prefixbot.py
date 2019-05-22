@@ -24,9 +24,11 @@ def check_queue(id):
 
 @client.event
 async def on_ready():
-    await client.change_presence(game=Game(name='Calculating by + | - | x | ÷ || c'))
-    print('Connected on ' + client.user.name)
-
+    print('The bot is ready!')
+    print('Logged in as')
+    print(client.user.name)
+    servers = client.servers
+	await client.change_presence(game=discord.Game(name='over {} servers | .mhelp'.format(len(servers)),type = 3))
 
 @client.event
 async def on_message(message):
