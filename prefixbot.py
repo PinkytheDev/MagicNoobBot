@@ -28,7 +28,7 @@ async def on_ready():
     print('Logged in as')
     print(client.user.name)
     servers = client.servers
-	await client.change_presence(game=discord.Game(name='over {} servers | .mhelp'.format(len(servers)),type = 3))
+    await client.change_presence(game=discord.Game(name='over {} servers | .mhelp'.format(len(servers)),type = 3))
 
 @client.event
 async def on_message(message):
@@ -71,7 +71,7 @@ async def on_reaction_remove(reaction, user):
 
 @client.command(pass_context=True)
 async def ping():
-    await client.send(f"Pong, {round(client.latency * 1000)}ms")
+    await client.send_message(f"Pong, {round(client.latency * 1000)}ms")
 
 @client.command(pass_context=True)
 async def join(ctx):
